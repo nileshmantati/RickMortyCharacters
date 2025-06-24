@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/RickMortyCharacters/static/css/main.635fd166.css",
+    "main.js": "/RickMortyCharacters/static/js/main.92109c02.js",
+    "static/js/453.fb6e6921.chunk.js": "/RickMortyCharacters/static/js/453.fb6e6921.chunk.js",
+    "index.html": "/RickMortyCharacters/index.html",
+    "main.635fd166.css.map": "/RickMortyCharacters/static/css/main.635fd166.css.map",
+    "main.92109c02.js.map": "/RickMortyCharacters/static/js/main.92109c02.js.map",
+    "453.fb6e6921.chunk.js.map": "/RickMortyCharacters/static/js/453.fb6e6921.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.635fd166.css",
+    "static/js/main.92109c02.js"
+  ]
+}
