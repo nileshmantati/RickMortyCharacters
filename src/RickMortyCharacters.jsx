@@ -14,32 +14,33 @@ const RickMortyCharacters = () => {
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setModal] = useState(false);
 
     useEffect(() => {
-        axios
-            .get("https://rickandmortyapi.com/api/character")
-            .then((res) => {
-                setCharacters(res.data.results);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error("Error fetching characters:", err);
-                setLoading(false);
-            });
+        setTimeout(() => {
+            axios
+                .get("https://rickandmortyapi.com/api/character")
+                .then((res) => {
+                    setCharacters(res.data.results);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    console.error("Error fetching", err);
+                    setLoading(false)
+                });
+        }, 400);
     }, []);
 
     const handleImageClick = (id) => {
-        setShowModal(true);
+        setModal(true);
         setSelectedCharacter(null);
-
         axios
             .get(`https://rickandmortyapi.com/api/character/${id}`)
             .then((res) => {
                 setSelectedCharacter(res.data);
             })
             .catch((err) => {
-                console.error("Error loading character details:", err);
+                console.error("Error loading:", err);
             });
     };
     return (
@@ -54,17 +55,17 @@ const RickMortyCharacters = () => {
                     </div>
                 ) : (
                     <Row>
-                        {characters.map((char) => (
-                            <Col xs={12} sm={6} md={4} lg={2} key={char.id} className="mb-4">
+                        {characters.map((item) => (
+                            <Col xs={12} sm={6} md={4} lg={2} key={item.id} className="mb-4">
                                 <Card>
                                     <Card.Img
                                         variant="top"
-                                        src={char.image}
+                                        src={item.image}
                                         style={{ cursor: "pointer" }}
-                                        onClick={() => handleImageClick(char.id)}
+                                        onClick={() => handleImageClick(item.id)}
                                     />
                                     <Card.Body>
-                                        <Card.Title className="text-center fw-bold" onClick={() => handleImageClick(char.id)} style={{ cursor: "pointer" }}>{char.name}</Card.Title>
+                                        <Card.Title className="text-center fw-bold" onClick={() => handleImageClick(item.id)} style={{ cursor: "pointer" }}>{item.name}</Card.Title>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -72,7 +73,7 @@ const RickMortyCharacters = () => {
                     </Row>
                 )}
                 <Row>
-                    <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                    <Modal show={showModal} onHide={() => setModal(false)} centered>
                         <Modal.Header closeButton>
                             <Modal.Title>
                                 {selectedCharacter ? selectedCharacter.name : "Loading..."}
@@ -100,7 +101,7 @@ const RickMortyCharacters = () => {
                             )}
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={() => setShowModal(false)}>
+                            <Button variant="secondary" onClick={() => setModal(false)}>
                                 Close
                             </Button>
                         </Modal.Footer>
