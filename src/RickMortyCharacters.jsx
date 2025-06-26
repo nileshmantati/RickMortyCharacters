@@ -16,7 +16,6 @@ const RickMortyCharacters = () => {
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    // Fetch characters on mount
     useEffect(() => {
         axios
             .get("https://rickandmortyapi.com/api/character")
@@ -30,10 +29,9 @@ const RickMortyCharacters = () => {
             });
     }, []);
 
-    // When image clicked, fetch full character details
     const handleImageClick = (id) => {
         setShowModal(true);
-        setSelectedCharacter(null); // Reset for loading state
+        setSelectedCharacter(null);
 
         axios
             .get(`https://rickandmortyapi.com/api/character/${id}`)
@@ -74,7 +72,6 @@ const RickMortyCharacters = () => {
                     </Row>
                 )}
                 <Row>
-                    {/* Modal */}
                     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                         <Modal.Header closeButton>
                             <Modal.Title>
